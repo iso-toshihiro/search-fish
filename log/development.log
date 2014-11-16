@@ -1,0 +1,27 @@
+
+
+Started GET "/diving_spots/show" for 127.0.0.1 at 2014-11-16 20:21:57 +0900
+Processing by DivingSpotsController#show as HTML
+  Rendered diving_spots/show.html.haml within layouts/application (1.9ms)
+Completed 200 OK in 77ms (Views: 66.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/diving_spots.css?body=1" for 127.0.0.1 at 2014-11-16 20:21:57 +0900
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-11-16 20:21:57 +0900
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-11-16 20:21:57 +0900
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-11-16 20:21:57 +0900
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-11-16 20:21:57 +0900
+
+
+Started GET "/assets/diving_spots.js?body=1" for 127.0.0.1 at 2014-11-16 20:21:57 +0900
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-11-16 20:21:57 +0900
