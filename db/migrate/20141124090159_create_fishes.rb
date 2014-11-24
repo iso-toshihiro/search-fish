@@ -1,4 +1,4 @@
-class CreateFish < ActiveRecord::Migration
+class CreateFishes < ActiveRecord::Migration
   def change
     create_table :fishes do |t|
       t.string :name
