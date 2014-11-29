@@ -24,22 +24,11 @@ ActiveRecord::Schema.define(version: 20141124112741) do
     t.integer "fish_id", null: false
   end
 
-  create_table "fishes", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "spots", force: true do |t|
     t.string   "name"
     t.string   "prefecture"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "spots_fishes", force: true do |t|
-    t.integer "spot_id", null: false
-    t.integer "fish_id", null: false
   end
 
 end
