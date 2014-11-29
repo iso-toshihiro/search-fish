@@ -4,5 +4,7 @@ class DivingSpotsController < ApplicationController
   end
 
   def show
+    @spot = Spot.find(params[:id])
+    @fish = @spot.fish
   end
 end
