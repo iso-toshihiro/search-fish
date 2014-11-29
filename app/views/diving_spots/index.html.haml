@@ -2,4 +2,4 @@
 %h3 スポット検索
 %p スポットリスト
 - @spots.each do |spot|
-  %p= spot.name
+  %p= link_to "#{spot.name}", fishes_path(spot)
