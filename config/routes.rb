@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'diving_spots#index'
+
   get 'diving_spots/index'
 
   get 'diving_spots/show'
