@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/repos/547d215fe30ba00c1b0071ca/badges/30c86fe9477ba970fab7/gpa.svg)](https://codeclimate.com/repos/547d215fe30ba00c1b0071ca/feed)
+
 search-fish
 ===========
 ## 概要
