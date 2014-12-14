@@ -31,11 +31,19 @@ class Scraping
       japanese_regex = /(\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+/
 
       fish_name_node = doc.css('ul.fishnm')
-      name = fish_name_node.text[japanese_regex]
-      another_name = fish_name_node.text[/(?<=\()#{japanese_regex}(?=\))/]
+      fish = {}
+      fish[:name] = fish_name_node.text[japanese_regex]
+      fish[:another_name] = fish_name_node.text[/(?<=\()#{japanese_regex}(?=\))/]
+
+      Fish.create(fish) unless Fish.exist?(fish[:name])
+
       doc.xpath('//div[@class="list_img"]').each do |node|
         arr = node.children
         spot = arr[6].text == '(' ? arr[10].text : arr[6].text
+
+        Spot.create(name: spot) unless Spot.exist?(spot)
+
+        FishSpot.save_relation(fish[:name], spot)
       end
     end
   end
