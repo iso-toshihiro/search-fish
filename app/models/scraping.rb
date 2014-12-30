@@ -37,7 +37,7 @@ class Scraping
       fish[:another_name] = fish_name_node.text[/(?<=\()#{japanese_regex}(?=\))/]
 
       Fish.create(fish) unless Fish.exist?(fish[:name])
-      
+
       doc.xpath('//div[@class="list_img"]').each do |node|
         arr = node.children
         spot = arr[6].text == '(' ? arr[10].text : arr[6].text
