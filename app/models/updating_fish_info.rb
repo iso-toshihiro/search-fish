@@ -2,7 +2,7 @@
 require 'nokogiri'
 require 'open-uri'
 
-class Scraping
+class UpdatingFishInfo
   HOME_URL = 'http://www.padi.co.jp/'
 
   class << self
