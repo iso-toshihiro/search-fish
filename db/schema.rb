@@ -11,13 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141214084403) do
+ActiveRecord::Schema.define(version: 20150114134850) do
 
   create_table "fish", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "another_name"
+    t.string   "url"
+    t.string   "url2"
   end
 
   create_table "fish_spots", force: true do |t|

@@ -2,10 +2,29 @@
 require 'nokogiri'
 require 'open-uri'
 
-class Scraping
+class UpdatingFishInfo
   HOME_URL = 'http://www.padi.co.jp/'
 
   class << self
+    def update_fish_info
+      scrape_site
+      save_fish_picture_url
+    end
+
+    def save_fish_picture_url
+      Fish.all.each do |fish|
+        unless fish.url && fish.url2
+          Fish.transaction do
+            fish.url ||= Fish.fetch_pic_url(fish.name, 0)
+            fish.url2 ||= Fish.fetch_pic_url(fish.name, 1)
+            fish.save!
+          end
+        end
+      end
+    rescue => e
+      p e
+    end
+
     def scrape_site
       doc = Nokogiri::HTML(open(HOME_URL + '/pb/index.asp'))
     
@@ -17,7 +36,7 @@ class Scraping
     end
 
     private
-  
+
     def access_fish_type_page(url)
       doc = Nokogiri::HTML(open(url))
 
@@ -33,10 +52,14 @@ class Scraping
       fish_name_node = doc.css('ul.fishnm')
       fish = {}
       fish[:name] = fish_name_node.text[japanese_regex]
-      next if fish[:name] =~ /の一種/
+      return if fish[:name] =~ /の一種/
       fish[:another_name] = fish_name_node.text[/(?<=\()#{japanese_regex}(?=\))/]
 
-      Fish.create(fish) unless Fish.exist?(fish[:name])
+      unless Fish.exist?(fish[:name])
+        Fish.transaction do
+          @fish = Fish.create(fish)
+        end
+      end
 
       doc.xpath('//div[@class="list_img"]').each do |node|
         arr = node.children
@@ -46,6 +69,8 @@ class Scraping
 
         FishSpot.save_relation(fish[:name], spot)
       end
+    rescue => e
+      p e
     end
   end
 end
