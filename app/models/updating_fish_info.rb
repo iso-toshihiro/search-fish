@@ -6,9 +6,11 @@ class UpdatingFishInfo
   HOME_URL = 'http://www.padi.co.jp/'
 
   class << self
-    def update_fish_info
+    def execute
+      p "UpdatingFishInfo.execute START #{Time.now}"
       scrape_site
       save_fish_picture_url
+      p "UpdatingFishInfo.execute END #{Time.now}"
     end
 
     def save_fish_picture_url
@@ -19,6 +21,7 @@ class UpdatingFishInfo
             fish.url2 ||= Fish.fetch_pic_url(fish.name, 1)
             fish.save!
           end
+          p "New URL fish_id:#{fish.id} name:#{fish.name}"
         end
       end
     rescue => e
@@ -52,13 +55,14 @@ class UpdatingFishInfo
       fish_name_node = doc.css('ul.fishnm')
       fish = {}
       fish[:name] = fish_name_node.text[japanese_regex]
-      return if fish[:name] =~ /の一種/
+      return if fish[:name] =~ /の一種/ || fish[:name] =~ /の仲間/
       fish[:another_name] = fish_name_node.text[/(?<=\()#{japanese_regex}(?=\))/]
 
       unless Fish.exist?(fish[:name])
         Fish.transaction do
           @fish = Fish.create(fish)
         end
+        p "New fish  id:#{@fish.id}, name:#{@fish.name}"
       end
 
       doc.xpath('//div[@class="list_img"]').each do |node|
