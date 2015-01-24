@@ -9,23 +9,8 @@ class UpdatingFishInfo
     def execute
       p "UpdatingFishInfo.execute START #{Time.now}"
       scrape_site
-      save_fish_picture_url
+      Fish.save_fish_picture_url
       p "UpdatingFishInfo.execute END #{Time.now}"
-    end
-
-    def save_fish_picture_url
-      Fish.all.each do |fish|
-        unless fish.url && fish.url2
-          Fish.transaction do
-            fish.url ||= Fish.fetch_pic_url(fish.name, 0)
-            fish.url2 ||= Fish.fetch_pic_url(fish.name, 1)
-            fish.save!
-          end
-          p "New URL fish_id:#{fish.id} name:#{fish.name}"
-        end
-      end
-    rescue => e
-      p e
     end
 
     def scrape_site
