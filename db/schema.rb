@@ -11,15 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150114134850) do
+ActiveRecord::Schema.define(version: 20141124112741) do
 
   create_table "fish", force: true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "another_name"
+    t.string   "group"
     t.string   "url"
     t.string   "url2"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "fish_spots", force: true do |t|
