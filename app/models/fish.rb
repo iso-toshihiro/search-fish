@@ -11,11 +11,11 @@ class Fish < ActiveRecord::Base
 
     def save_fish_picture_url
       all.each do |fish|
-        p "fish_id:#{fish.id}"
         unless fish.url && fish.url2
+          urls = fetch_pic_urls(fish.name)
           transaction do
-            fish.url ||= fetch_pic_url(fish.name, 0)
-            fish.url2 ||= fetch_pic_url(fish.name, 1)
+            fish.url ||= urls[0]
+            fish.url2 ||= urls[1]
             fish.save!
           end
           p "New URL fish_id:#{fish.id} name:#{fish.name}"
@@ -27,14 +27,14 @@ class Fish < ActiveRecord::Base
 
     private
 
-    def fetch_pic_url(fish_name, num)
+    def fetch_pic_urls(fish_name)
       search_url = URI.encode("http://image.search.yahoo.co.jp/search?p=#{fish_name}")
-
       doc = Nokogiri.HTML(open(search_url))
-      src_url = doc.xpath("//p[@class='tb']/a")[num].attribute('href').value
 
-      return "excess bytesize" if src_url.bytesize > 255
-      src_url
+      2.times.map.with_index do |i|
+        url = doc.xpath("//p[@class='tb']/a")[i].attribute('href').value
+        url.bytesize > 255 ? 'excess bytesize' : url
+      end
     end
   end
 end
