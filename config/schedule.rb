@@ -21,6 +21,6 @@
 
 set :output, "log/cron_log.log"
 set :environment, :development
-every :sunday, :at => '1:00 am' do
+every :tuesday, :at => '1:00 am' do
   runner "UpdatingFishInfo.execute"
 end
