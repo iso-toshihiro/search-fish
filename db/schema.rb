@@ -15,6 +15,10 @@ ActiveRecord::Schema.define(version: 20141124112741) do
 
   create_table "fish", force: true do |t|
     t.string   "name"
+    t.string   "another_name"
+    t.string   "group"
+    t.string   "url"
+    t.string   "url2"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
