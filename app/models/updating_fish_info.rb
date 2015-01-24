@@ -4,6 +4,7 @@ require 'open-uri'
 
 class UpdatingFishInfo
   HOME_URL = 'http://www.padi.co.jp/'
+  JAPANESE_REGEX = /(\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々]|[・])+/
 
   class << self
     def execute
@@ -19,29 +20,29 @@ class UpdatingFishInfo
       doc.xpath('//div[@class="category"]/div/a').each do |node|
         next if node.text =~ /TOP/
         
-        access_fish_type_page(HOME_URL + node.attribute('href').value)
+        access_fish_group_page(HOME_URL + node.attribute('href').value)
       end
     end
 
     private
 
-    def access_fish_type_page(url)
+    def access_fish_group_page(url)
       doc = Nokogiri::HTML(open(url))
+      group_name = doc.css('#headnavi').children.text[JAPANESE_REGEX]
 
       doc.xpath('//div[@class="list"]/a').each do |node|
         fish_url = HOME_URL + node.attribute('href').value
-        extract_fish_info(Nokogiri::HTML(open(fish_url)))
+        extract_fish_info(Nokogiri::HTML(open(fish_url)), group_name)
       end
     end
 
-    def extract_fish_info(doc)
-      japanese_regex = /(\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々])+/
-
+    def extract_fish_info(doc, group_name)
       fish_name_node = doc.css('ul.fishnm')
       fish = {}
-      fish[:name] = fish_name_node.text[japanese_regex]
+      fish[:name] = fish_name_node.text[JAPANESE_REGEX]
       return if fish[:name] =~ /の一種/ || fish[:name] =~ /の仲間/
-      fish[:another_name] = fish_name_node.text[/(?<=\()#{japanese_regex}(?=\))/]
+      fish[:another_name] = fish_name_node.text[/(?<=\()#{JAPANESE_REGEX}(?=\))/]
+      fish[:group] = group_name
 
       unless Fish.exist?(fish[:name])
         Fish.transaction do
