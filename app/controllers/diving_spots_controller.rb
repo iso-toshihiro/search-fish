@@ -10,6 +10,12 @@ class DivingSpotsController < ApplicationController
     @groups = get_grops(@fish)
   end
 
+  def search
+    all_ids = Spot.all.map { |spot| spot.id }
+    display_ids = Spot.where('name LIKE ?', "%#{params[:keyword]}%").map { |spot| spot.id }
+    render json: { all_ids: all_ids, display_ids: display_ids }
+  end
+
   def selecte
     fish = Spot.find(params[:id]).fish
     all_ids = fish.map { |f| f.id }
