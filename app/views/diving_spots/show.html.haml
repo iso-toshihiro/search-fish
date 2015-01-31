@@ -1,5 +1,13 @@
+= javascript_include_tag 'fish'
+
+- spot_id = @spot.id
 %h1= "#{@spot.name}で見られる魚"
+%select{id: 'group_box', name: 'fish_group_box', spot_id: spot_id}
+  %option{value: 'all'}すべて
+  - @groups.each do |group|
+    %option{value: "#{group}"}=group
 - @fish.each_with_index do |fish, i|
-  %p= "#{fish.name}"
-  %img{src: "#{fish.url}", alt: "fish picture #{i}", height: '120'}
-  %img{src: "#{fish.url2}", alt: "fish picture #{i}", height: '120'}
+  %div{id: "fish_id_#{fish.id}"}
+    %p= "#{fish.name}"
+    %img{src: "#{fish.url}", alt: "fish picture #{i}", height: '120'}
+    %img{src: "#{fish.url2}", alt: "fish picture #{i}", height: '120'}
