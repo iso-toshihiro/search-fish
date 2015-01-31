@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'diving_spots/:id/fishes' => 'diving_spots#show', as: :fishes
 
   get 'diving_spots/:id/fishes/group' => 'diving_spots#selecte'
+
+  get 'diving_spots/search' => 'diving_spots#search'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
