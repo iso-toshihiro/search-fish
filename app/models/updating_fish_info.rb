@@ -53,6 +53,7 @@ class UpdatingFishInfo
 
       doc.xpath('//div[@class="list_img"]').each do |node|
         arr = node.children
+        next if arr[6].text == "\r\n\t\t\t"
         spot = arr[6].text == '(' ? arr[10].text : arr[6].text
 
         Spot.create(tmp_name: spot) unless Spot.exist?(spot)
