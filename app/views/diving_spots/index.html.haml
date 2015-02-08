@@ -8,4 +8,4 @@
 %p スポットリスト
 - @spots.each do |spot|
   %div{id: "spot_id_#{spot.id}"}
-    %p= link_to "#{spot.name}", fishes_path(spot)
+    %p= link_to "#{spot.tmp_name}", fishes_path(spot)

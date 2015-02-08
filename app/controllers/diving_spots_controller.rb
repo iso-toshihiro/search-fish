@@ -12,7 +12,7 @@ class DivingSpotsController < ApplicationController
 
   def search
     all_ids = Spot.all.map { |spot| spot.id }
-    display_ids = Spot.where('name LIKE ?', "%#{params[:keyword]}%").map { |spot| spot.id }
+    display_ids = Spot.where('tmp_name LIKE ?', "%#{params[:keyword]}%").map { |spot| spot.id }
     render json: { all_ids: all_ids, display_ids: display_ids }
   end
 

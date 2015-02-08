@@ -4,7 +4,7 @@ class Spot < ActiveRecord::Base
 
   class << self
     def exist?(spot)
-      find_by_name(spot).present?
+      find_by_tmp_name(spot).present?
     end
   end
 end

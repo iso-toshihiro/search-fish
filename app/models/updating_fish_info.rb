@@ -55,7 +55,7 @@ class UpdatingFishInfo
         arr = node.children
         spot = arr[6].text == '(' ? arr[10].text : arr[6].text
 
-        Spot.create(name: spot) unless Spot.exist?(spot)
+        Spot.create(tmp_name: spot) unless Spot.exist?(spot)
 
         FishSpot.save_relation(fish[:name], spot)
       end
