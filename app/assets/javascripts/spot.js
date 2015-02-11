@@ -1,11 +1,16 @@
 function attachMessage(marker, spot) {
     google.maps.event.addListener(marker, 'click', function(event){
-	html = '<div>'+ spot.name + '</div>';
+	var windowId = 'spot_marker_window_' + spot.id;
+	var url = '/diving_spots/' + spot.id  + '/fishes';
+	html = '<a href="' + url + '" id="' + windowId + '" window="open">'+ spot.name + '</a>';
+
 	var infoWindow = new google.maps.InfoWindow({
 	    Content: html
 	});
 
-	infoWindow.open(marker.getMap(), marker);
+	if ( $('#' + windowId).attr('window') != 'open') {
+	    infoWindow.open(marker.getMap(), marker);
+	}
     });
 }
 
