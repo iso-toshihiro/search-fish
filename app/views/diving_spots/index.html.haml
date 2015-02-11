@@ -1,11 +1,15 @@
+= javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyDqkn0crDk1IMbinDBTJwLILKANftyKxiU&sensor=true"
 = javascript_include_tag 'spot'
 
 %h1 ダイビングスポット
-%h3 スポット検索
 
+%h3 スポットマップ
+%div{id: "map_canvas", style: "width:500px; height:300px"}
+
+%h3 スポット検索
 = text_field_tag :spot_search
 
-%p スポットリスト
+%h3 スポットリスト
 - @spots.each do |spot|
   %div{id: "spot_id_#{spot.id}"}
     %p= link_to "#{spot.tmp_name}", fishes_path(spot)
