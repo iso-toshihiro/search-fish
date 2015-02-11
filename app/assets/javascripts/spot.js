@@ -1,3 +1,14 @@
+function attachMessage(marker, spot) {
+    google.maps.event.addListener(marker, 'click', function(event){
+	html = '<div>'+ spot.name + '</div>';
+	var infoWindow = new google.maps.InfoWindow({
+	    Content: html
+	});
+
+	infoWindow.open(marker.getMap(), marker);
+    });
+}
+
 function mapInitialize() {
     var first_position = new google.maps.LatLng(35.6809691281986,139.7668620944023);
     var opts = {
@@ -11,12 +22,17 @@ function mapInitialize() {
 	    url:  '/diving_spots/coordinates',
 	    Type: 'json',
 	    success: function(res){
-		for( var i = 0 ; i < res.coordinates.length; i++) {
-		    var position = new google.maps.LatLng(res.coordinates[i][0], res.coordinates[i][1]);
-		    new google.maps.Marker({
+		for( var i = 0 ; i < res.spots.length; i++) {
+		    if( !res.spots[i].lat ) {
+			continue;
+		    }
+		    var position = new google.maps.LatLng(res.spots[i].lat, res.spots[i].lng);
+		    var marker = new google.maps.Marker({
 			position: position,
-			map: map
+			map: map,
+			title: res.spots[i].name
 		    });
+		    attachMessage(marker, res.spots[i]);
 		}
 	    }
 	   });

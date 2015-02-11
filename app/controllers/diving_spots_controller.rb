@@ -29,10 +29,10 @@ class DivingSpotsController < ApplicationController
   end
 
   def coordinates
-    coordinates = Spot.all.map do |spot|
-      [spot.latitude, spot.longitude]
+    spots = Spot.all.map do |spot|
+      {lat: spot.latitude, lng: spot.longitude, name: spot.tmp_name}
     end
-    render json: { coordinates: coordinates }
+    render json: { spots: spots }
   end
 
   private
