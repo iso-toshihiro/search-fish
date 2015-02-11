@@ -28,6 +28,13 @@ class DivingSpotsController < ApplicationController
     render json: { all_ids: all_ids, display_ids: display_ids }
   end
 
+  def coordinates
+    coordinates = Spot.all.map do |spot|
+      [spot.latitude, spot.longitude]
+    end
+    render json: { coordinates: coordinates }
+  end
+
   private
 
   def get_grops(fish)
