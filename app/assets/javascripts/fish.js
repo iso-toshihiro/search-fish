@@ -12,7 +12,7 @@ $(document).ready(function(){
     $('#group_box').change(function() {
 	spotId = $(this).attr('spot_id');
 	group = $("select option:selected").text();
-	alert(spotId);
+
 	$.ajax({type: 'GET',
 		url:  '/diving_spots/' + spotId + '/fishes/group',
 		data: {id: spotId, group: group},
