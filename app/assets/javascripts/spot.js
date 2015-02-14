@@ -57,10 +57,11 @@ $(document).ready(function(){
     }
 
     $('#spot_search').change(function(e){
+	var abroad = $("select option:selected").val();
 	var word = $(this).val();
         $.ajax({type: 'GET',
 		url:  '/diving_spots/search',
-                data: { keyword: word },
+                data: { keyword: word, abroad: abroad },
                 Type: 'json',
                 success: function(res){
                     res.all_ids.forEach(invisibleSpots);

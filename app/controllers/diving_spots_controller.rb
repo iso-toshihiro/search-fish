@@ -11,9 +11,22 @@ class DivingSpotsController < ApplicationController
   end
 
   def search
-    all_ids = Spot.all.map { |spot| spot.id }
-    display_ids = Spot.where('tmp_name LIKE ?', "%#{params[:keyword]}%").map { |spot| spot.id }
-    render json: { all_ids: all_ids, display_ids: display_ids }
+    spots = case params[:abroad]
+            when 'true'  then Spot.where(abroad: true)
+            when 'false' then Spot.where(abroad: false)
+            when 'NULL'  then Spot
+            end
+
+    all_ids     =  Spot.all.map { |spot| spot.id }
+    display_ids =  spots.where('tmp_name   LIKE ?', "%#{params[:keyword]}%").map { |spot| spot.id }
+    display_ids += spots.where('name       LIKE ?', "%#{params[:keyword]}%").map { |spot| spot.id }
+    display_ids += spots.where('furigana   LIKE ?', "%#{params[:keyword]}%").map { |spot| spot.id }
+    display_ids += spots.where('alphabet   LIKE ?', "%#{params[:keyword]}%").map { |spot| spot.id }
+    display_ids += spots.where('country    LIKE ?', "%#{params[:keyword]}%").map { |spot| spot.id }
+    display_ids += spots.where('prefecture LIKE ?', "%#{params[:keyword]}%").map { |spot| spot.id }
+    display_ids += spots.where('area       LIKE ?', "%#{params[:keyword]}%").map { |spot| spot.id }
+
+    render json: { all_ids: all_ids, display_ids: display_ids.uniq }
   end
 
   def selecte
