@@ -56,9 +56,9 @@ $(document).ready(function(){
         element.style.display = 'none';
     }
 
-    $('#spot_search').change(function(e){
+    function spotSearch() {
 	var abroad = $("select option:selected").val();
-	var word = $(this).val();
+	var word = $('#spot_search').val();
         $.ajax({type: 'GET',
 		url:  '/diving_spots/search',
                 data: { keyword: word, abroad: abroad },
@@ -68,5 +68,9 @@ $(document).ready(function(){
 		    res.display_ids.forEach(displaiedSpots);
                 }
 	       });
-    });
+    }
+
+    $('#spot_search').change(spotSearch);
+
+    $('#abroad_select_box').change(spotSearch);
 });
