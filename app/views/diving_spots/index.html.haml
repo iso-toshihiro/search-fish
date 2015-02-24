@@ -7,7 +7,9 @@
 %div{id: "map_canvas", style: "width:500px; height:300px"}
 
 %h3 スポット検索
-= text_field_tag :spot_search
+スポット名、国名、県名、キーワードで検索
+%br
+= text_field_tag :spot_search, nil, size: 40
 %select{id: 'abroad_select_box'}
   %option{value: 'NULL'}国内・海外
   %option{value: 'false'}国内のみ
