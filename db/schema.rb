@@ -30,7 +30,16 @@ ActiveRecord::Schema.define(version: 20141124112741) do
 
   create_table "spots", force: true do |t|
     t.string   "name"
+    t.string   "furigana"
+    t.string   "alphabet"
+    t.string   "keywords"
+    t.boolean  "abroad"
+    t.string   "country"
     t.string   "prefecture"
+    t.string   "area"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "tmp_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
