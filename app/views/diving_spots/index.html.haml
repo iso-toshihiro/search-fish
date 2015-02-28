@@ -2,20 +2,25 @@
 
 %h1 ダイビングスポット
 
-%h3 スポットマップ
-%div{id: "map_canvas", style: "width:500px; height:300px"}
+%div{id: 'search_box'}
+  %div{id: 'map_search'}
+    %h3 スポットマップ
+    %div{id: "map_canvas"}
 
-%h3 スポット検索
-スポット名、国名、県名、キーワードで検索
-%br
-= text_field_tag :spot_search, nil, size: 40
-%select{id: 'abroad_select_box'}
-  %option{value: 'NULL'}国内・海外
-  %option{value: 'false'}国内のみ
-  %option{value: 'true'}海外のみ
-= button_tag '検索'
+  %div{id: 'keyword_search'}
+    %h3 スポット検索
+    スポット名、国名、県名、キーワードで検索
+    %br
+    = text_field_tag :spot_search, nil, size: 40
+    %select{id: 'abroad_select_box'}
+      %option{value: 'NULL'}国内・海外
+      %option{value: 'false'}国内のみ
+      %option{value: 'true'}海外のみ
+    %br
+    = button_tag '検索'
 
-%h3 スポットリスト
-- @spots.each do |spot|
-  %div{id: "spot_id_#{spot.id}"}
-    %p= link_to "#{spot.tmp_name}", fishes_path(spot)
+%div{id: 'list'}
+  %h3 スポットリスト
+  - @spots.each do |spot|
+    %div{id: "spot_id_#{spot.id}"}
+      %p= link_to "#{spot.tmp_name}", fishes_path(spot)
