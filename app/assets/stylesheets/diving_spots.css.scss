@@ -10,10 +10,27 @@ body {
     background: #0d174a;
     border-top: 5px solid #02088a;
     border-bottom: 5px solid #02088a;
-    text-align: center;
+
+    a {
+	color: #a3ffff;
+	text-decoration: none;
+	&:hover { opacity: .8; }
+	&:active, &:focus { outline: 0; }
+    }
+
+    h1 {
+	text-align: center;
+    }
+
+    h3 {
+	margin: 5px auto;
+	font-size: 150%;
+	border:1px solid #02088a;
+	background-color: #02088a;
+    }
 
     #search_box {
-	width: 980px; height: 330px;
+	width: 990px; height: 330px;
 	margin: 0 auto;
 	#map_search {
 	    width: 600px; height: 330px;
@@ -24,17 +41,21 @@ body {
 	    }
 	}
 	#keyword_search {
-	    width: 350px; height: 330px;
+	    width: 370px; height: 330px;
 	    float: right;
 	}
     }
 
     #list {
-	a {
-	    color: #a3ffff;
-	    text-decoration: none;
-	    &:hover { opacity: .8; }
-	    &:active, &:focus { outline: 0; }
+	width: 990px;
+	height: 100%;
+	margin: 0 auto;
+	div {
+	    width: 330px; height: 30px;
+	    font-size: 130%;
+	    text-align: left;
+	    float: left;
 	}
     }
 }
+
