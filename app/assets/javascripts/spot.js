@@ -47,12 +47,12 @@ $(document).ready(function(){
     mapInitialize();
 
     function displaiedSpots(value) {
-	var element =  document.getElementById("spot_id_" + value );
-        element.style.display = 'block';
+	var element = document.getElementById("spot_id_" + value );
+	element.style.display = 'block';
     }
 
     function invisibleSpots(value) {
-        var element =  document.getElementById("spot_id_" + value );
+        var element = document.getElementById("spot_id_" + value );
         element.style.display = 'none';
     }
 
