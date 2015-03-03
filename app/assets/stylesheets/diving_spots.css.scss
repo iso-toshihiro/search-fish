@@ -9,7 +9,7 @@ body {
     -webkit-text-size-adjust: none;
     background: #0d174a;
     border-top: 5px solid #02088a;
-    border-bottom: 5px solid #02088a;
+    //border-bottom: 5px solid #02088a;
 
     a {
 	color: #a3ffff;
@@ -23,7 +23,8 @@ body {
     }
 
     h3 {
-	margin: 5px auto;
+	margin: 10px auto;
+	padding: 4px 3px;
 	font-size: 150%;
 	border:1px solid #02088a;
 	background-color: #02088a;
@@ -59,3 +60,17 @@ body {
     }
 }
 
+#fish_list{
+    width: 990px;
+    text-align: left;
+    margin: 0 auto;
+    #group_box_part {
+	width: 990px; height: 50px;
+	float: left;
+    }
+    .fish_box {
+	width: 330px; height: 200px;
+	font-size: 130%;
+	float: left;
+    }
+}
