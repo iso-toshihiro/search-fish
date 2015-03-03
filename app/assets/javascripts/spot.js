@@ -33,6 +33,7 @@ function mapInitialize() {
 		    }
 		    var position = new google.maps.LatLng(res.spots[i].lat, res.spots[i].lng);
 		    var marker = new google.maps.Marker({
+			icon: 'http://maps.google.co.jp/mapfiles/ms/icons/marina.png',
 			position: position,
 			map: map,
 			title: res.spots[i].name
