@@ -23,6 +23,11 @@ body {
 	background-color: #02088a;
     }
 
+    #top_img {
+	display: block;
+	margin: 0 auto;
+    }
+
     #search_box {
 	width: 990px; height: 330px;
 	margin: 0 auto;
@@ -71,6 +76,7 @@ body {
 	width: 330px; height: 200px;
 	font-size: 130%;
 	float: left;
+	margin: 10px auto;
     }
     a {
 	color: #a3ffff;
