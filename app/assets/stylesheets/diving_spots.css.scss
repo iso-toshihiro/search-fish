@@ -11,13 +11,6 @@ body {
     border-top: 5px solid #02088a;
     //border-bottom: 5px solid #02088a;
 
-    a {
-	color: #a3ffff;
-	text-decoration: none;
-	&:hover { opacity: .8; }
-	&:active, &:focus { outline: 0; }
-    }
-
     h1 {
 	text-align: center;
     }
@@ -56,6 +49,12 @@ body {
 	    font-size: 130%;
 	    text-align: left;
 	    float: left;
+	    a {
+		color: #a3ffff;
+		text-decoration: none;
+		&:hover { opacity: .8; }
+		&:active, &:focus { outline: 0; }
+	    }
 	}
     }
 }
@@ -72,5 +71,12 @@ body {
 	width: 330px; height: 200px;
 	font-size: 130%;
 	float: left;
+    }
+    a {
+	color: #a3ffff;
+	text-decoration: none;
+	font-size: 85%;
+	&:hover { opacity: .8; }
+	&:active, &:focus { outline: 0; }
     }
 }
