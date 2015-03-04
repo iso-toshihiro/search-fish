@@ -1,0 +1,88 @@
+// Place all the styles related to the diving_spots controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+    color: #fff;
+    font: 12px verdana,"ヒラギノ丸ゴ ProN W4", "Hiragino Maru Gothic ProN", "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", "MS PGothic", Sans-Serif;
+    line-height: 1.5;
+    -webkit-text-size-adjust: none;
+    background: #0d174a;
+    border-top: 5px solid #02088a;
+    //border-bottom: 5px solid #02088a;
+
+    h1 {
+	text-align: center;
+    }
+
+    h3 {
+	margin: 10px auto;
+	padding: 4px 3px;
+	font-size: 150%;
+	border:1px solid #02088a;
+	background-color: #02088a;
+    }
+
+    #top_img {
+	display: block;
+	margin: 0 auto;
+    }
+
+    #search_box {
+	width: 990px; height: 330px;
+	margin: 0 auto;
+	#map_search {
+	    width: 600px; height: 330px;
+	    float: left;
+	    #map_canvas {
+		width: 600px; height: 270px;
+		margin: 0 auto;
+	    }
+	}
+	#keyword_search {
+	    width: 370px; height: 330px;
+	    float: right;
+	}
+    }
+
+    #list {
+	width: 990px;
+	height: 100%;
+	margin: 0 auto;
+	div {
+	    width: 330px; height: 30px;
+	    font-size: 130%;
+	    text-align: left;
+	    float: left;
+	    a {
+		color: #a3ffff;
+		text-decoration: none;
+		&:hover { opacity: .8; }
+		&:active, &:focus { outline: 0; }
+	    }
+	}
+    }
+}
+
+#fish_list{
+    width: 990px;
+    text-align: left;
+    margin: 0 auto;
+    #group_box_part {
+	width: 990px; height: 50px;
+	float: left;
+    }
+    .fish_box {
+	width: 330px; height: 200px;
+	font-size: 130%;
+	float: left;
+	margin: 10px auto;
+    }
+    a {
+	color: #a3ffff;
+	text-decoration: none;
+	font-size: 85%;
+	&:hover { opacity: .8; }
+	&:active, &:focus { outline: 0; }
+    }
+}

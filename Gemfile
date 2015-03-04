@@ -38,3 +38,13 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+#Haml
+gem 'haml-rails'
+
+gem 'nokogiri'
+
+gem 'pry-rails'
+gem 'pry-remote'
+gem 'pry-nav'
+
+gem 'whenever', require: false

@@ -1,0 +1,17 @@
+
+- spot_id = @spot.id
+%h1= "#{@spot.name}で見られる魚"
+%div{id: 'fish_list'}
+  %div{id: 'group_box_part'}
+    グループ毎に表示する
+    %br
+    %select{id: 'group_box', name: 'fish_group_box', spot_id: spot_id}
+      %option{value: 'all'}すべて
+      - @groups.each do |group|
+        %option{value: "#{group}"}=group
+  - @fish.each_with_index do |fish, i|
+    %div{id: "fish_id_#{fish.id}", class: 'fish_box'}
+      %p= "#{fish.name}"
+      %img{src: "#{fish.url}", alt: "fish picture #{i}", height: '120'}
+      %br
+      = link_to "この魚の他の画像を見る", "https://www.google.co.jp/search?q=#{fish.name}&source=lnms&tbm=isch", target: ["_blank"]
