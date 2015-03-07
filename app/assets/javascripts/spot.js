@@ -67,6 +67,9 @@ $(document).ready(function(){
                 success: function(res){
                     res.all_ids.forEach(invisibleSpots);
 		    res.display_ids.forEach(displaiedSpots);
+		    var numberOfLine = Math.ceil(res.display_ids.length / 3);
+		    var spotListHeight = numberOfLine * 30;
+		    document.getElementById('spot_list').style.height = String(spotListHeight) + 'px';
                 }
 	       });
     }

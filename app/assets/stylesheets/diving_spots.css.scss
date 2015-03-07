@@ -47,9 +47,8 @@ body {
 
     #list {
 	width: 990px;
-	height: 100%;
 	margin: 0 auto;
-	div {
+	.spot_box {
 	    width: 330px; height: 30px;
 	    font-size: 130%;
 	    text-align: left;

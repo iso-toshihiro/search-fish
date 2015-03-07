@@ -2,6 +2,8 @@
 class DivingSpotsController < ApplicationController
   def index
     @spots = Spot.all
+    number_of_line = (@spots.size / 3).ceil
+    @spot_list_height = (number_of_line * 30).to_s
   end
 
   def show

@@ -24,6 +24,7 @@
 
   %div{id: 'list'}
     %h3 スポットリスト
-    - @spots.each do |spot|
-      %div{id: "spot_id_#{spot.id}"}
-        = link_to "#{spot.tmp_name}", fishes_path(spot)
+    %div{id: 'spot_list', style: "height: #{@spot_list_height}px;"}
+      - @spots.each do |spot|
+        %div{id: "spot_id_#{spot.id}", class: 'spot_box'}
+          = link_to "#{spot.tmp_name}", fishes_path(spot)
