@@ -2,7 +2,7 @@
 
 - spot_id = @spot.id
 %h1= "#{@spot.name}で見られる魚"
-%div{id: 'fish_list'}
+%div{id: 'fish_list', style: "height: #{@fish_list_height}px;"}
   %div{id: 'group_box_part'}
     グループ毎に表示する
     %br

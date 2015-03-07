@@ -72,10 +72,11 @@ body {
 	float: left;
     }
     .fish_box {
+	position: relative;
 	width: 330px; height: 200px;
 	font-size: 130%;
 	float: left;
-	margin: 10px auto;
+	margin: 0px auto 20px;
     }
     a {
 	color: #a3ffff;
