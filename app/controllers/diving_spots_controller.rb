@@ -2,16 +2,14 @@
 class DivingSpotsController < ApplicationController
   def index
     @spots = Spot.all
-    number_of_line = (@spots.size.to_f / 3).ceil
-    @spot_list_height = (number_of_line * 30).to_s
+    @spot_list_height = calculate_height(@spots.size, 3, 30)
   end
 
   def show
     @spot = Spot.find(params[:id])
     @fish = @spot.fish
     @groups = get_grops(@fish)
-    number_of_line = (@fish.size.to_f / 3).ceil
-    @fish_list_height = (number_of_line * 220 + 50).to_s
+    @fish_list_height = calculate_height(@fish.size, 3, 220, 50)
   end
 
   def search
@@ -57,5 +55,10 @@ class DivingSpotsController < ApplicationController
   def get_grops(fish)
     grops = fish.map { |f| f.group }
     grops.uniq
+  end
+
+  def calculate_height(number_of_item, number_of_column, height_par_line, offset = 0)
+    number_of_line = (number_of_item.to_f / number_of_column).ceil
+    number_of_line * height_par_line + offset
   end
 end
