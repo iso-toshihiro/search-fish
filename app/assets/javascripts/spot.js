@@ -1,10 +1,7 @@
 function attachMessage(marker, spot, openSwitch) {
     var windowId = 'spot_marker_window_' + spot.id;
-    var url = '/diving_spots/' + spot.id  + '/fishes';
-    var html = '<a href="' + url + '" id="' + windowId + '" window="open">'+ spot.name + '</a>';
-
     var infoWindow = new google.maps.InfoWindow({
-	Content: html
+	Content: spot.html
     });
 
     google.maps.event.addListener(marker, 'click', function(event){
@@ -32,14 +29,15 @@ function mapSet(centerPosition, zoomLevel, openId) {
     var map = new google.maps.Map(document.getElementById("map_canvas"), opts);
 
     $.ajax({type: 'GET',
-	    url:  '/diving_spots/coordinates',
+	    url:  '/diving_spots/information',
 	    Type: 'json',
 	    success: function(res){
 		for( var i = 0 ; i < res.spots.length; i++) {
-		    if( !res.spots[i].lat ) {
+		    if( !res.spots[i].latitude ) {
 			continue;
 		    }
-		    var markerPosition = new google.maps.LatLng(res.spots[i].lat, res.spots[i].lng);
+		    var markerPosition = new google.maps.LatLng(res.spots[i].latitude, res.spots[i].longitude);
+
 		    var marker = new google.maps.Marker({
 			position: markerPosition,
 			map: map,
