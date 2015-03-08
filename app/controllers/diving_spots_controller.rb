@@ -9,7 +9,7 @@ class DivingSpotsController < ApplicationController
     @spot = Spot.find(params[:id])
     @fish = @spot.fish
     @groups = get_grops(@fish)
-    @fish_list_height = calculate_height(@fish.size, 3, 220, 50)
+    @fish_list_height = calculate_height(@fish.size, 3, 220, 97)
   end
 
   def search
