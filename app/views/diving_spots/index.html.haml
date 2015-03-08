@@ -18,4 +18,5 @@
 %h3 スポットリスト
 - @spots.each do |spot|
   %div{id: "spot_id_#{spot.id}"}
-    %p= link_to "#{spot.tmp_name}", fishes_path(spot)
+    - spot_name = spot.name.nil? ? spot.tmp_name : spot.name
+    %p= link_to "#{spot_name}", fishes_path(spot)
