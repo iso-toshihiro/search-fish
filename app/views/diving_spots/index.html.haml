@@ -20,3 +20,4 @@
   %div{id: "spot_id_#{spot.id}"}
     - spot_name = spot.name.nil? ? spot.tmp_name : spot.name
     %p= link_to "#{spot_name}", fishes_path(spot)
+    = button_tag '地図に表示', class: 'indicating_on_map', spot_id: "#{spot.id}"

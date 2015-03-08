@@ -48,6 +48,11 @@ class DivingSpotsController < ApplicationController
     render json: { spots: spots }
   end
 
+  def position
+    spot = Spot.find(params[:id])
+    render json: { id: spot.id, lat: spot.latitude, lng: spot.longitude }
+  end
+
   private
 
   def get_grops(fish)
