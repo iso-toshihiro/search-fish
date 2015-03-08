@@ -24,7 +24,8 @@ function mapSet(centerPosition, zoomLevel, openId) {
     var opts = {
 	zoom: zoomLevel,
 	center: centerPosition,
-	mapTypeId: google.maps.MapTypeId.ROADMAP
+	mapTypeId: google.maps.MapTypeId.ROADMAP,
+	streetViewControl: false
     };
     var map = new google.maps.Map(document.getElementById("map_canvas"), opts);
 
