@@ -103,6 +103,19 @@ body {
 	    }
 	}
     }
+    #footer {
+	width: 990px;
+	margin: 20px auto 10px;
+	#to_top {
+	    float: right;
+	}
+	a {
+	    color: #a3ffff;
+	    text-decoration: none;
+	    &:hover { opacity: .8; }
+	    &:active, &:focus { outline: 0; }
+	}
+    }
 }
 
 #fish_list{

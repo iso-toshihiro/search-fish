@@ -29,3 +29,5 @@
       - @spots.each do |spot|
         %div{id: "spot_id_#{spot.id}", class: 'spot_box'}
           = link_to "#{spot.tmp_name}", fishes_path(spot)
+
+  = render 'shared/footer'
