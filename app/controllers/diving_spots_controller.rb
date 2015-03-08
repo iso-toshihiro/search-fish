@@ -49,9 +49,11 @@ class DivingSpotsController < ApplicationController
       url = fishes_path(spot)
       area = spot.abroad ? spot.country : "#{spot.prefecture}県"
       html = <<-EOS
+        <div class='map_window'>
         <a href='#{url}' id='#{windowId}' window='open'>#{spot.name}</a><br>
         #{area}<br>
         登録生物数: #{spot.fish.count}
+        </div>
       EOS
       hash = spot.attributes
       hash['html'] = html
