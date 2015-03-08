@@ -1,44 +1,51 @@
-function attachMessage(marker, spot) {
+function attachMessage(marker, spot, openSwitch) {
+    var windowId = 'spot_marker_window_' + spot.id;
+    var infoWindow = new google.maps.InfoWindow({
+	Content: spot.html
+    });
+
     google.maps.event.addListener(marker, 'click', function(event){
-	var windowId = 'spot_marker_window_' + spot.id;
-	var url = '/diving_spots/' + spot.id  + '/fishes';
-	html = '<a href="' + url + '" id="' + windowId + '" window="open">'+ spot.name + '</a>';
-
-	var infoWindow = new google.maps.InfoWindow({
-	    Content: html
-	});
-
 	if ( $('#' + windowId).attr('window') != 'open') {
 	    infoWindow.open(marker.getMap(), marker);
 	}
     });
+
+    if(openSwitch) {
+	infoWindow.open(marker.getMap(), marker);
+    }
 }
 
 function mapInitialize() {
     var first_position = new google.maps.LatLng(35.6809691281986,139.7668620944023);
+    mapSet(first_position, 5, null);
+};
+
+function mapSet(centerPosition, zoomLevel, openId) {
     var opts = {
-	zoom: 5,
-	center: first_position,
+	zoom: zoomLevel,
+	center: centerPosition,
 	mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     var map = new google.maps.Map(document.getElementById("map_canvas"), opts);
 
     $.ajax({type: 'GET',
-	    url:  '/diving_spots/coordinates',
+	    url:  '/diving_spots/information',
 	    Type: 'json',
 	    success: function(res){
 		for( var i = 0 ; i < res.spots.length; i++) {
-		    if( !res.spots[i].lat ) {
+		    if( !res.spots[i].latitude ) {
 			continue;
 		    }
-		    var position = new google.maps.LatLng(res.spots[i].lat, res.spots[i].lng);
+		    var markerPosition = new google.maps.LatLng(res.spots[i].latitude, res.spots[i].longitude);
+
 		    var marker = new google.maps.Marker({
 			icon: 'http://maps.google.co.jp/mapfiles/ms/icons/marina.png',
-			position: position,
+			position: markerPosition,
 			map: map,
 			title: res.spots[i].name
 		    });
-		    attachMessage(marker, res.spots[i]);
+		    var open = (openId == res.spots[i].id) ? true : false ;
+		    attachMessage(marker, res.spots[i], open);
 		}
 	    }
 	   });
@@ -77,4 +84,16 @@ $(document).ready(function(){
     $('#spot_search').change(spotSearch);
 
     $('#abroad_select_box').change(spotSearch);
+
+    $('.indicating_on_map').click(function() {
+	var spotId = $(this).attr('spot_id');
+	$.ajax({type: 'GET',
+		url:  '/diving_spots/' + spotId + '/position',
+		Type: 'json',
+		success: function(res){
+		    var position = new google.maps.LatLng(res.lat, res.lng);
+		    mapSet(position, 10, res.id);
+		}
+	       });
+    });
 });

@@ -4,7 +4,8 @@
 = render 'shared/header'
 - spot_id = @spot.id
 %div{id: 'fish_list', style: "height: #{@fish_list_height}px;"}
-  %h3= "#{@spot.name}で見られる魚"
+  - spot_name = @spot.name.nil? ? @spot.tmp_name : @spot.name
+  %h3= "#{spot_name}で見られる魚"
   %div{id: 'group_box_part'}
     グループ毎に表示する
     %br
@@ -19,3 +20,4 @@
       %br
       = link_to "この魚の他の画像を見る", "https://www.google.co.jp/search?q=#{fish.name}&source=lnms&tbm=isch", target: ["_blank"]
 = render 'shared/footer'
+
