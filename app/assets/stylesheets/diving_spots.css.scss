@@ -11,6 +11,48 @@ body {
     border-top: 5px solid #02088a;
     border-bottom: 5px solid #02088a;
 
+    ul#top_navigation {
+	width: 990px;
+	clear: both;
+	overflow: hidden;
+	margin: 0 auto 30px;
+	height: 1%;
+	li {
+	    float: left;
+	    width: 144px;
+	    font-size: 12px;
+	    display: block;
+            padding: 5px 0 10px 10px;
+	    color: #fff;
+	    border-left: 3px solid #fff;
+	    a {
+		color: #fff;
+		text-decoration: none;
+	    }
+	}
+	li:last-child {
+	    width: 142px;
+	}
+	li:hover {
+	    border-color: #02088a;
+	    opacity: .8;
+	}
+    }
+
+    #introduction {
+	width: 990px;
+	margin: 0 auto 20px;
+	div{
+	    padding: 0 10px;
+	}
+	a {
+	    color: #a3ffff;
+	    text-decoration: none;
+	    &:hover { opacity: .8; }
+	    &:active, &:focus { outline: 0; }
+	}
+    }
+
     h1 {
 	text-align: center;
     }

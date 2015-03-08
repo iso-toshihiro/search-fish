@@ -1,5 +1,7 @@
 = javascript_include_tag 'fish'
+= javascript_include_tag 'navigation'
 
+= render 'shared/header'
 - spot_id = @spot.id
 %h1= "#{@spot.name}で見られる魚"
 %div{id: 'fish_list', style: "height: #{@fish_list_height}px;"}

@@ -1,8 +1,9 @@
 = javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyDqkn0crDk1IMbinDBTJwLILKANftyKxiU&sensor=true"
 = javascript_include_tag 'spot'
+= javascript_include_tag 'navigation'
 
 %body
-  %h1 ダイビングスポット
+  = render 'shared/header'
   = image_tag 'dive_pic.jpg', id: 'top_img'
 
   %div{id: 'search_box'}
