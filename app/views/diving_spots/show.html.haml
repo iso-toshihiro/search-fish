@@ -1,6 +1,7 @@
 
 - spot_id = @spot.id
-%h1= "#{@spot.name}で見られる魚"
+- spot_name = @spot.name.nil? ? @spot.tmp_name : @spot.name
+%h1= "#{spot_name}で見られる魚"
 %select{id: 'group_box', name: 'fish_group_box', spot_id: spot_id}
   %option{value: 'all'}すべて
   - @groups.each do |group|

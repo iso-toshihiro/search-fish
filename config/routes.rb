@@ -9,7 +9,9 @@ Rails.application.routes.draw do
 
   get 'diving_spots/search' => 'diving_spots#search'
 
-  get 'diving_spots/coordinates' => 'diving_spots#coordinates'
+  get 'diving_spots/information' => 'diving_spots#information'
+
+  get 'diving_spots/:id/position' => 'diving_spots#position'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

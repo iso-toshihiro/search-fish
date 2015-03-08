@@ -41,11 +41,27 @@ class DivingSpotsController < ApplicationController
     render json: { all_ids: all_ids, display_ids: display_ids }
   end
 
-  def coordinates
+  def information
     spots = Spot.all.map do |spot|
-      {id: spot.id, lat: spot.latitude, lng: spot.longitude, name: spot.name}
+      windowId = "spot_marker_window_#{spot.id}"
+      url = fishes_path(spot)
+      area = spot.abroad ? spot.country : "#{spot.prefecture}県"
+      html = <<-EOS
+        <a href='#{url}' id='#{windowId}' window='open'>#{spot.name}</a><br>
+        #{area}<br>
+        登録生物数: #{spot.fish.count}
+      EOS
+      hash = spot.attributes
+      hash['html'] = html
+      hash
     end
+
     render json: { spots: spots }
+  end
+
+  def position
+    spot = Spot.find(params[:id])
+    render json: { id: spot.id, lat: spot.latitude, lng: spot.longitude }
   end
 
   private
