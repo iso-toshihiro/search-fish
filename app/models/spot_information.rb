@@ -45,9 +45,10 @@ class SpotInformation
             when 5  then spot.update_attributes!(country: record)
             when 6  then spot.update_attributes!(prefecture: record)
             when 7  then spot.update_attributes!(area: record)
-            when 8  then spot.update_attributes!(latitude: record)
-            when 9  then spot.update_attributes!(longitude: record)
-            when 10 then spot.update_attributes!(tmp_name: record)
+            when 8  then spot.update_attributes!(sea: record)
+            when 9  then spot.update_attributes!(latitude: record)
+            when 10 then spot.update_attributes!(longitude: record)
+            when 11 then spot.update_attributes!(tmp_name: record)
             end
           end
         end
