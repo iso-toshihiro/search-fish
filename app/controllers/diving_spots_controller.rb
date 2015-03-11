@@ -47,7 +47,7 @@ class DivingSpotsController < ApplicationController
     spots = Spot.all.map do |spot|
       windowId = "spot_marker_window_#{spot.id}"
       url = fishes_path(spot)
-      area = spot.abroad ? spot.country : "#{spot.prefecture}県"
+      area = spot.abroad ? spot.country : spot.prefecture
       html = <<-EOS
         <div class='map_window'>
         <a href='#{url}' id='#{windowId}' window='open'>#{spot.name}</a><br>
