@@ -55,6 +55,7 @@ class UpdatingFishInfo
         arr = node.children
         next if arr[6].text == "\r\n\t\t\t"
         spot = arr[6].text == '(' ? arr[10].text : arr[6].text
+        next if spot == 'その他'
 
         Spot.create(tmp_name: spot) unless Spot.exist?(spot)
 
