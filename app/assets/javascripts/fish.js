@@ -28,14 +28,18 @@ $(document).ready(function(){
     });
 
     $('img').error(function() {
-	var fishId = $(this).attr('fish_id');
-	$.ajax({type: 'GET',
-		url:  '/diving_spots/' + fishId + '/fish/another_url',
-		data: {id: fishId},
-		sataType: 'json',
-		success: function(res){
-		    $('#fish_picture_'+ res.id).attr('src', res.url);
-		}
-	       });
+	if(!$(this).hasClass('changed')) {
+	    var fishId = $(this).attr('fish_id');
+	    $.ajax({type: 'GET',
+		    url:  '/diving_spots/' + fishId + '/fish/another_url',
+		    data: {id: fishId},
+		    sataType: 'json',
+		    success: function(res){
+			var pictureId = '#fish_picture_'+ res.id;
+			$(pictureId).attr('src', res.url);
+			$(pictureId).addClass('changed');
+		    }
+		   });
+	}
     });
 });
