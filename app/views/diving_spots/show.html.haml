@@ -16,7 +16,7 @@
   - @fish.each_with_index do |fish, i|
     %div{id: "fish_id_#{fish.id}", class: 'fish_box'}
       %p= "#{fish.name}"
-      %img{src: "#{fish.url}", alt: "fish picture #{i}", height: '120'}
+      %img{id: "fish_picture_#{fish.id}", src: "#{fish.url}", alt: "fish picture #{i}", height: '120', fish_id: "#{fish.id}"}
       %br
       = link_to "この魚の他の画像を見る", "https://www.google.co.jp/search?q=#{fish.name}&source=lnms&tbm=isch", target: ["_blank"]
 = render 'shared/footer'

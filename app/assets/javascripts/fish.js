@@ -26,4 +26,16 @@ $(document).ready(function(){
 		}
 	       });
     });
+
+    $('img').error(function() {
+	var fishId = $(this).attr('fish_id');
+	$.ajax({type: 'GET',
+		url:  '/diving_spots/' + fishId + '/fish/another_url',
+		data: {id: fishId},
+		sataType: 'json',
+		success: function(res){
+		    $('#fish_picture_'+ res.id).attr('src', res.url);
+		}
+	       });
+    });
 });

@@ -68,6 +68,11 @@ class DivingSpotsController < ApplicationController
     render json: { id: spot.id, lat: spot.latitude, lng: spot.longitude }
   end
 
+  def another_url
+    fish_id = params[:id]
+    render json: { id: fish_id, url: Fish.find(fish_id).url2 }
+  end
+
   private
 
   def get_grops(fish)
