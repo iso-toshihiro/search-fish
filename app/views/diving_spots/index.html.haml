@@ -30,6 +30,6 @@
         %div{id: "spot_id_#{spot.id}", class: 'spot_box'}
           - spot_name = spot.name.nil? ? spot.tmp_name : spot.name
           = link_to "#{spot_name}", fishes_path(spot)
-          = button_tag '地図に表示', class: 'indicating_on_map', spot_id: "#{spot.id}"
+          = button_tag 'MAP', class: 'indicating_on_map', spot_id: "#{spot.id}"
 
   = render 'shared/footer'
