@@ -18,6 +18,7 @@
       %p= "#{fish.name}"
       %img{id: "fish_picture_#{fish.id}", src: "#{fish.url}", alt: "fish picture #{i}", height: '120', fish_id: "#{fish.id}"}
       %br
-      = link_to "この魚の他の画像を見る", "https://www.google.co.jp/search?q=#{fish.name}&source=lnms&tbm=isch", target: ["_blank"]
+      - search_word = fish.search_word.nil? ? fish.name : fish.search_word
+      = link_to "この魚の他の画像を見る", "https://www.google.co.jp/search?q=#{search_word}&source=lnms&tbm=isch", target: ["_blank"]
 = render 'shared/footer'
 
