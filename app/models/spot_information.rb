@@ -36,22 +36,9 @@ class SpotInformation
         next if line == 0
         Spot.transaction do
           spot = Spot.find_by_tmp_name(row[11])
-          row.each_with_index do |record, i|
-            case i
-            when 0  then spot.update_attributes!(name: record)
-            when 1  then spot.update_attributes!(furigana: record)
-            when 2  then spot.update_attributes!(alphabet: record)
-            when 3  then spot.update_attributes!(keywords: record)
-            when 4  then spot.update_attributes!(abroad: record)
-            when 5  then spot.update_attributes!(country: record)
-            when 6  then spot.update_attributes!(prefecture: record)
-            when 7  then spot.update_attributes!(area: record)
-            when 8  then spot.update_attributes!(sea: record)
-            when 9  then spot.update_attributes!(latitude: record)
-            when 10 then spot.update_attributes!(longitude: record)
-            when 11 then spot.update_attributes!(tmp_name: record)
-            end
-          end
+          next if spot.nil?
+          hash = {name: row[0], furigana: row[1], alphabet: row[2], keywords: row[3], abroad: row[4], country: row[5], prefecture: row[6], area: row[7], sea: row[8], latitude: row[9], longitude: row[10], tmp_name: row[11]}
+          spot.update_attributes!(hash)
         end
       end
     end
