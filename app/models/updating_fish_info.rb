@@ -1,6 +1,7 @@
 # coding: utf-8
 require 'nokogiri'
 require 'open-uri'
+require 'csv'
 
 class UpdatingFishInfo
   HOME_URL = 'http://www.padi.co.jp/'
@@ -10,6 +11,7 @@ class UpdatingFishInfo
     def execute
       p "UpdatingFishInfo.execute START #{Time.now}"
       scrape_site
+      insert_search_word('./fish_search_word.csv')
       Fish.save_fish_picture_url
       p "UpdatingFishInfo.execute END #{Time.now}"
     end
@@ -21,6 +23,14 @@ class UpdatingFishInfo
         next if node.text =~ /TOP/
         
         access_fish_group_page(HOME_URL + node.attribute('href').value)
+      end
+    end
+
+    def insert_search_word(filepath)
+      CSV.foreach(filepath).with_index do |row, line|
+        next if line == 0
+        fish = Fish.find_by_name(row[0])
+        fish.update_attributes!(search_word: row[1]) unless fish.search_word == row[1]
       end
     end
 
