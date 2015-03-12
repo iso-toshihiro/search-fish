@@ -4,7 +4,7 @@ class SpotInformation
   class << self
     def export_csv
       CSV.open('./tmp_sopt_info.csv', 'w') do |csv|
-        headers = ['name', 'furigana', 'alphabet', 'keywords', 'abroad', 'country', 'prefecture', 'area', 'latitude', 'longitude', 'tmp_name']
+        headers = ['name', 'furigana', 'alphabet', 'keywords', 'abroad', 'country', 'prefecture', 'area', 'sea', 'latitude', 'longitude', 'tmp_name']
         csv << headers
         Spot.all.each do |spot|
           line = []
@@ -16,6 +16,7 @@ class SpotInformation
           line << spot.country
           line << spot.prefecture
           line << spot.area
+          line << spot.sea
           line << spot.latitude
           line << spot.longitude
           line << spot.tmp_name
@@ -34,7 +35,7 @@ class SpotInformation
       CSV.foreach(filepath).with_index do |row, line|
         next if line == 0
         Spot.transaction do
-          spot = Spot.find_by_tmp_name(row[10])
+          spot = Spot.find_by_tmp_name(row[11])
           row.each_with_index do |record, i|
             case i
             when 0  then spot.update_attributes!(name: record)
