@@ -54,18 +54,17 @@ body {
     }
 
     h1 {
-	padding:10px;
+	padding: 10px;
 	font-family: 'Vidaloka', serif;
-	text-align:center;
-	font-weight:normal;
-	color:#fff;
-	background-color:#0d174a;
+	text-align: center;
+	font-weight: normal;
+	color: #fff;
 	.maintitle {
-	    display:block;
-	    font-size:72px;
-	    line-height:72px;
-	    letter-spacing:-4px;
-	    text-shadow:0px 0px 3px #fff,
+	    display: block;
+	    font-size: 72px;
+	    line-height: 72px;
+	    letter-spacing: -4px;
+	    text-shadow: 0px 0px 3px #fff,
 	    0px 0px 6px #fff,
 	    0px 0px 9px #fff,
 	    0px 0px 12px #06f,
@@ -149,13 +148,13 @@ body {
 	}
     }
 }
+
 .map_window {
     color: #000000;
     a {
 	font-size: 120%;
     }
 }
-
 
 #fish_list{
     width: 990px;
