@@ -122,17 +122,30 @@ body {
 	    }
 	}
     }
+
     #footer {
 	width: 990px;
 	margin: 20px auto 10px;
 	#to_top {
 	    float: right;
+	    margin: 22px 0 0 0;
 	}
 	a {
 	    color: #a3ffff;
 	    text-decoration: none;
 	    &:hover { opacity: .8; }
 	    &:active, &:focus { outline: 0; }
+	}
+	h1 {
+	    margin: 0px;
+	    padding: 0px;
+	    .maintitle {
+		height: 40px;
+		line-height: normal;
+		text-align: left;
+		font-size: 30px;
+		letter-spacing: normal;
+	    }
 	}
     }
 }
