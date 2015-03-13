@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get 'diving_spots/information' => 'diving_spots#information'
 
   get 'diving_spots/:id/position' => 'diving_spots#position'
+
+  get 'diving_spots/:id/fish/another_url' => 'diving_spots#another_url'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

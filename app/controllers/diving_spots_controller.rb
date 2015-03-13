@@ -2,12 +2,14 @@
 class DivingSpotsController < ApplicationController
   def index
     @spots = Spot.all
+    @spot_list_height = calculate_height(@spots.size, 3, 30)
   end
 
   def show
     @spot = Spot.find(params[:id])
     @fish = @spot.fish
     @groups = get_grops(@fish)
+    @fish_list_height = calculate_height(@fish.size, 3, 220, 97)
   end
 
   def search
@@ -45,11 +47,13 @@ class DivingSpotsController < ApplicationController
     spots = Spot.all.map do |spot|
       windowId = "spot_marker_window_#{spot.id}"
       url = fishes_path(spot)
-      area = spot.abroad ? spot.country : "#{spot.prefecture}県"
+      area = spot.abroad ? spot.country : spot.prefecture
       html = <<-EOS
+        <div class='map_window'>
         <a href='#{url}' id='#{windowId}' window='open'>#{spot.name}</a><br>
         #{area}<br>
         登録生物数: #{spot.fish.count}
+        </div>
       EOS
       hash = spot.attributes
       hash['html'] = html
@@ -64,10 +68,20 @@ class DivingSpotsController < ApplicationController
     render json: { id: spot.id, lat: spot.latitude, lng: spot.longitude }
   end
 
+  def another_url
+    fish_id = params[:id]
+    render json: { id: fish_id, url: Fish.find(fish_id).url2 }
+  end
+
   private
 
   def get_grops(fish)
     grops = fish.map { |f| f.group }
     grops.uniq
+  end
+
+  def calculate_height(number_of_item, number_of_column, height_par_line, offset = 0)
+    number_of_line = (number_of_item.to_f / number_of_column).ceil
+    number_of_line * height_par_line + offset
   end
 end

@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20141124112741) do
   create_table "fish", force: true do |t|
     t.string   "name"
     t.string   "another_name"
+    t.string   "search_word"
     t.string   "group"
     t.string   "url"
     t.string   "url2"
@@ -37,6 +38,7 @@ ActiveRecord::Schema.define(version: 20141124112741) do
     t.string   "country"
     t.string   "prefecture"
     t.string   "area"
+    t.string   "sea"
     t.float    "latitude"
     t.float    "longitude"
     t.string   "tmp_name"

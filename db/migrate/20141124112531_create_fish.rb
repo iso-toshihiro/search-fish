@@ -3,6 +3,7 @@ class CreateFish < ActiveRecord::Migration
     create_table :fish do |t|
       t.string :name
       t.string :another_name
+      t.string :search_word
       t.string :group
       t.string :url
       t.string :url2

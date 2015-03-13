@@ -24,7 +24,8 @@ function mapSet(centerPosition, zoomLevel, openId) {
     var opts = {
 	zoom: zoomLevel,
 	center: centerPosition,
-	mapTypeId: google.maps.MapTypeId.ROADMAP
+	mapTypeId: google.maps.MapTypeId.ROADMAP,
+	streetViewControl: false
     };
     var map = new google.maps.Map(document.getElementById("map_canvas"), opts);
 
@@ -39,6 +40,7 @@ function mapSet(centerPosition, zoomLevel, openId) {
 		    var markerPosition = new google.maps.LatLng(res.spots[i].latitude, res.spots[i].longitude);
 
 		    var marker = new google.maps.Marker({
+			icon: 'http://maps.google.co.jp/mapfiles/ms/icons/marina.png',
 			position: markerPosition,
 			map: map,
 			title: res.spots[i].name
@@ -54,12 +56,12 @@ $(document).ready(function(){
     mapInitialize();
 
     function displaiedSpots(value) {
-	var element =  document.getElementById("spot_id_" + value );
-        element.style.display = 'block';
+	var element = document.getElementById("spot_id_" + value );
+	element.style.display = 'block';
     }
 
     function invisibleSpots(value) {
-        var element =  document.getElementById("spot_id_" + value );
+        var element = document.getElementById("spot_id_" + value );
         element.style.display = 'none';
     }
 
@@ -73,11 +75,14 @@ $(document).ready(function(){
                 success: function(res){
                     res.all_ids.forEach(invisibleSpots);
 		    res.display_ids.forEach(displaiedSpots);
+		    var numberOfLine = Math.ceil(res.display_ids.length / 3);
+		    var spotListHeight = numberOfLine * 30;
+		    document.getElementById('spot_list').style.height = String(spotListHeight) + 'px';
                 }
 	       });
     }
 
-    $('#spot_search').change(spotSearch);
+    $('#spot_search').keyup(spotSearch);
 
     $('#abroad_select_box').change(spotSearch);
 

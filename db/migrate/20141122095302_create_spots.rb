@@ -9,6 +9,7 @@ class CreateSpots < ActiveRecord::Migration
       t.string  :country
       t.string  :prefecture
       t.string  :area
+      t.string  :sea
       t.float   :latitude
       t.float   :longitude
       t.string  :tmp_name

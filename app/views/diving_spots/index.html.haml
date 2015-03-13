@@ -1,23 +1,35 @@
 = javascript_include_tag "http://maps.googleapis.com/maps/api/js?key=AIzaSyDqkn0crDk1IMbinDBTJwLILKANftyKxiU&sensor=true"
+= javascript_include_tag 'spot'
+= javascript_include_tag 'navigation'
 
-%h1 ダイビングスポット
+%body
+  = render 'shared/header'
+  = image_tag 'dive_pic.jpg', id: 'top_img'
 
-%h3 スポットマップ
-%div{id: "map_canvas", style: "width:500px; height:300px"}
+  %div{id: 'search_box'}
+    %div{id: 'map_search'}
+      %h3 スポットマップ
+      %div{id: "map_canvas"}
 
-%h3 スポット検索
-スポット名、国名、県名、キーワードで検索
-%br
-= text_field_tag :spot_search, nil, size: 40
-%select{id: 'abroad_select_box'}
-  %option{value: 'NULL'}国内・海外
-  %option{value: 'false'}国内のみ
-  %option{value: 'true'}海外のみ
-= button_tag '検索'
+    %div{id: 'keyword_search'}
+      %h3 スポット検索
+      スポット名、国名、県名、キーワードで検索
+      %br
+      = text_field_tag :spot_search, nil, size: 40
+      %select{id: 'abroad_select_box'}
+        %option{value: 'NULL'}国内・海外
+        %option{value: 'false'}国内のみ
+        %option{value: 'true'}海外のみ
+      %br
+      = button_tag '検索', id: 'search_button'
 
-%h3 スポットリスト
-- @spots.each do |spot|
-  %div{id: "spot_id_#{spot.id}"}
-    - spot_name = spot.name.nil? ? spot.tmp_name : spot.name
-    %p= link_to "#{spot_name}", fishes_path(spot)
-    = button_tag '地図に表示', class: 'indicating_on_map', spot_id: "#{spot.id}"
+  %div{id: 'list'}
+    %h3 スポットリスト
+    %div{id: 'spot_list', style: "height: #{@spot_list_height}px;"}
+      - @spots.each do |spot|
+        %div{id: "spot_id_#{spot.id}", class: 'spot_box'}
+          - spot_name = spot.name.nil? ? spot.tmp_name : spot.name
+          = link_to "#{spot_name}", fishes_path(spot)
+          = button_tag 'MAP', class: 'indicating_on_map', spot_id: "#{spot.id}"
+
+  = render 'shared/footer'

@@ -12,7 +12,8 @@ class Fish < ActiveRecord::Base
     def save_fish_picture_url
       all.each do |fish|
         unless fish.url && fish.url2
-          urls = fetch_pic_urls(fish.name)
+          search_word = fish.search_word.nil? ? fish.name : fish.search_word
+          urls = fetch_pic_urls(search_word)
           transaction do
             fish.url ||= urls[0]
             fish.url2 ||= urls[1]
@@ -27,8 +28,8 @@ class Fish < ActiveRecord::Base
 
     private
 
-    def fetch_pic_urls(fish_name)
-      search_url = URI.encode("http://image.search.yahoo.co.jp/search?p=#{fish_name}")
+    def fetch_pic_urls(search_word)
+      search_url = URI.encode("http://image.search.yahoo.co.jp/search?p=#{search_word}")
       doc = Nokogiri.HTML(open(search_url))
 
       2.times.map.with_index do |i|
