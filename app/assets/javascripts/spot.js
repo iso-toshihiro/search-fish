@@ -82,7 +82,7 @@ $(document).ready(function(){
 	       });
     }
 
-    $('#spot_search').change(spotSearch);
+    $('#spot_search').keyup(spotSearch);
 
     $('#abroad_select_box').change(spotSearch);
 
