@@ -180,7 +180,7 @@ body {
     }
 }
 
-button {
+button, select {
     border: 1px solid #15aeec;
     background-color: #49c0f0;
     background-image: -webkit-linear-gradient(top, #49c0f0, #2cafe3);
@@ -210,4 +210,17 @@ button {
 
 #search_button {
     margin: 8px 0;
+    width: 45px; height: 24px;
+    font: 12px verdana,"ヒラギノ丸ゴ ProN W4", "Hiragino Maru Gothic ProN", "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", "MS PGothic", Sans-Serif;
+}
+
+select {
+    height: 24px;
+    font: 12px verdana,"ヒラギノ丸ゴ ProN W4", "Hiragino Maru Gothic ProN", "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", "MS PGothic", Sans-Serif;
+}
+
+input {
+    border: 2px solid #49c0f0;
+    width: 260px; height: 20px;
+    font: 13px verdana,"ヒラギノ丸ゴ ProN W4", "Hiragino Maru Gothic ProN", "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", "MS PGothic", Sans-Serif;
 }
