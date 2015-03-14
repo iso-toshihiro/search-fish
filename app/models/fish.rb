@@ -1,8 +1,28 @@
+# coding: utf-8
+require 'nokogiri'
+require 'open-uri'
 require 'URI'
 
 class Fish < ActiveRecord::Base
   has_many :fish_spots
   has_many :spots, through: :fish_spots
+
+  JAPANESE_REGEX = /(\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々]|[・])+/
+
+  def webzukan_url
+    search_url = URI.encode("http://zukan.com/fish/search?key=#{name}")
+    doc = Nokogiri::HTML(open(search_url))
+    url = ''
+    doc.xpath('//tbody//a').each do |node|
+      url = 'http://zukan.com' + node.attribute('href').value if name == node.text[JAPANESE_REGEX]
+    end
+    url.blank? ? false : url
+  end
+
+  def fish?
+    groups = %w(ウミウシの仲間 ヒラムシの仲間 エビ・カニの仲間 貝の仲間 イカ・タコの仲間 ウミガメの仲間 その他)
+    !groups.include?(group)
+  end
 
   class << self
     def exist?(name)

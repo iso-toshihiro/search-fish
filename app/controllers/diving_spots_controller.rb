@@ -78,6 +78,11 @@ class DivingSpotsController < ApplicationController
     render json: { id: fish_id, url: Fish.find(fish_id).url2 }
   end
 
+  def webzukan
+    fish = Fish.find(params[:id])
+    render json: { url: fish.webzukan_url }
+  end
+
   private
 
   def get_grops(fish)

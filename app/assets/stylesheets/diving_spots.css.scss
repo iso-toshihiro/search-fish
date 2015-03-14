@@ -184,6 +184,8 @@ body {
 	color: #a3ffff;
 	text-decoration: none;
 	font-size: 85%;
+	cursor: hand;
+	cursor: pointer;
 	&:hover { opacity: .8; }
 	&:active, &:focus { outline: 0; }
     }
