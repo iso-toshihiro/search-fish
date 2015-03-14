@@ -3,7 +3,7 @@ require "csv"
 class SpotInformation
   class << self
     def export_csv
-      CSV.open('./tmp_sopt_info.csv', 'w') do |csv|
+      CSV.open('./tmp_spot_info.csv', 'w') do |csv|
         headers = ['name', 'furigana', 'alphabet', 'keywords', 'abroad', 'country', 'prefecture', 'area', 'sea', 'latitude', 'longitude', 'tmp_name']
         csv << headers
         Spot.all.each do |spot|
@@ -25,7 +25,7 @@ class SpotInformation
         end
       end
 
-      CSV.open('./only_sopt_info.csv', 'w') do |csv|
+      CSV.open('./only_spot_info.csv', 'w') do |csv|
         spot_names = Spot.all.map { |spot| spot.tmp_name }
         csv << spot_names
       end
