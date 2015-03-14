@@ -24,6 +24,7 @@ class DivingSpotsController < ApplicationController
     display_ids += spots.where('name       LIKE ?', "%#{params[:keyword]}%").map { |spot| spot.id }
     display_ids += spots.where('furigana   LIKE ?', "%#{params[:keyword]}%").map { |spot| spot.id }
     display_ids += spots.where('alphabet   LIKE ?', "%#{params[:keyword]}%").map { |spot| spot.id }
+    display_ids += spots.where('keywords   LIKE ?', "%#{params[:keyword]}%").map { |spot| spot.id }
     display_ids += spots.where('country    LIKE ?', "%#{params[:keyword]}%").map { |spot| spot.id }
     display_ids += spots.where('prefecture LIKE ?', "%#{params[:keyword]}%").map { |spot| spot.id }
     display_ids += spots.where('area       LIKE ?', "%#{params[:keyword]}%").map { |spot| spot.id }
