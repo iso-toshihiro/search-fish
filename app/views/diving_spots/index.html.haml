@@ -31,5 +31,7 @@
           - spot_name = spot.name.nil? ? spot.tmp_name : spot.name
           = link_to "#{spot_name}", fishes_path(spot)
           = button_tag 'MAP', class: 'indicating_on_map', spot_id: "#{spot.id}"
+          %a{href: "https://www.google.co.jp/search?q=#{spot_name} ダイビング", target: '_brank'}
+            = button_tag 'SHOP'
 
   = render 'shared/footer'

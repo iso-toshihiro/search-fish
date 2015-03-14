@@ -187,6 +187,7 @@ button, select {
     background-image: linear-gradient(to bottom, #49c0f0, #2cafe3);
     border-radius: 4px;
     color: #fff;
+    line-height: 8px;
     -webkit-transition: none;
     transition: none;
     text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
@@ -202,10 +203,6 @@ button, select {
 	color: #1679a1;
 	text-shadow: 0 1px 1px rgba(255, 255, 255, .5);
     }
-}
-
-.indicating_on_map {
-    line-height: 8px;
 }
 
 #search_button {
