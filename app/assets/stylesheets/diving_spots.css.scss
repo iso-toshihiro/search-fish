@@ -151,8 +151,17 @@ body {
 
 .map_window {
     color: #000000;
+    height: 76px;
     a {
 	font-size: 120%;
+    }
+    .spot_info {
+	position: relative;
+	top: -5px;
+	#sub_spot_name {
+	    font-size: 10px;
+	    color: #888;
+	}
     }
 }
 
