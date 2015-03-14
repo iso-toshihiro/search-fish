@@ -48,3 +48,5 @@ gem 'pry-remote'
 gem 'pry-nav'
 
 gem 'whenever', require: false
+
+gem 'settingslogic'
