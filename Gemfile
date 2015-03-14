@@ -50,3 +50,5 @@ gem 'pry-nav'
 gem 'whenever', require: false
 
 gem 'settingslogic'
+
+gem 'romaji'
