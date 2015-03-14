@@ -80,7 +80,9 @@ class DivingSpotsController < ApplicationController
 
   def webzukan
     fish = Fish.find(params[:id])
-    render json: { url: fish.webzukan_url }
+    urls = fish.zukan_urls.compact
+    result =  urls.blank? ? false : true
+    render json: { urls: urls, result: result }
   end
 
   private

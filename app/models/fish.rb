@@ -2,6 +2,8 @@
 require 'nokogiri'
 require 'open-uri'
 require 'URI'
+require 'romaji/core_ext/string'
+require 'kconv'
 
 class Fish < ActiveRecord::Base
   has_many :fish_spots
@@ -9,14 +11,8 @@ class Fish < ActiveRecord::Base
 
   JAPANESE_REGEX = /(\p{Hiragana}|\p{Katakana}|[ー－]|[一-龠々]|[・])+/
 
-  def webzukan_url
-    search_url = URI.encode("http://zukan.com/fish/search?key=#{name}")
-    doc = Nokogiri::HTML(open(search_url))
-    url = ''
-    doc.xpath('//tbody//a').each do |node|
-      url = 'http://zukan.com' + node.attribute('href').value if name == node.text[JAPANESE_REGEX]
-    end
-    url.blank? ? false : url
+  def zukan_urls
+    [ fish? ? web_fish_zukan_url : nil, diver_zukan_url]
   end
 
   def fish?
@@ -57,5 +53,42 @@ class Fish < ActiveRecord::Base
         url.bytesize > 255 ? 'excess bytesize' : url
       end
     end
+  end
+
+  def web_fish_zukan_url
+    search_url = URI.encode("http://zukan.com/fish/search?key=#{name}")
+    doc = Nokogiri::HTML(open(search_url))
+    url = ''
+    doc.xpath('//tbody//a').each do |node|
+      url = 'http://zukan.com' + node.attribute('href').value if name == node.text[JAPANESE_REGEX]
+    end
+    url.blank? ? nil : url
+  end
+
+  def diver_zukan_url
+    html = open('http://www.sea-fishes.com/seafishes/japaneseindex.html').read
+    doc = Nokogiri::HTML(html.toutf8, nil, 'utf-8')
+    initial = name.romaji[0]
+    num =  case initial
+           when 'a', 'i', 'u', 'e', 'o' then 0
+           when 'k', 'g'                then 1
+           when 's', 'z', 'j'           then 2
+           when 't', 'c', 'd'           then 3
+           when 'n'                     then 4
+           when 'h', 'f', 'b', 'p'      then 5
+           when 'm'                     then 6
+           when 'y'                     then 7
+           when 'r', 'l'                then 8
+           when 'w'                     then 9
+           end
+    arr = doc.xpath('//div[@class="con1"]')[num].css('a')
+    url = ''
+    arr.each do |node|
+      if name == node.text[JAPANESE_REGEX]
+        url = 'http://www.sea-fishes.com/seafishes/' + node.attribute('href').value
+        break
+      end
+    end
+    url.blank? ? nil : url
   end
 end

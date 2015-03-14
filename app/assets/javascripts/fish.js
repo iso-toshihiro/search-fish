@@ -50,10 +50,12 @@ $(document).ready(function(){
 		data: {id: fishId},
 		sataType: 'json',
 		success: function(res){
-		    if(res.url) {
-			window.open(res.url, '_blank');
+		    if(res.result) {
+			for( var i = 0 ; i < res.urls.length; i++) {
+			    window.open(res.urls[i], '_blank');
+			}
 		    }else {
-			alert('WEB魚図鑑にはありませんでした。');
+			alert('WEB図鑑にはありませんでした。');
 		    }
 		}
 	       });
