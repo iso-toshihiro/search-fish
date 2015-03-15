@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  root 'diving_spots#index'
+
+  get 'diving_spots/index'
+
+  get 'diving_spots/:id/fishes' => 'diving_spots#show', as: :fishes
+
+  get 'diving_spots/:id/fishes/group' => 'diving_spots#selecte'
+
+  get 'diving_spots/search' => 'diving_spots#search'
+
+  get 'diving_spots/information' => 'diving_spots#information'
+
+  get 'diving_spots/:id/position' => 'diving_spots#position'
+
+  get 'diving_spots/:id/fish/another_url' => 'diving_spots#another_url'
+
+  get 'diving_spots/:id/fish/webzukan' => 'diving_spots#webzukan'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

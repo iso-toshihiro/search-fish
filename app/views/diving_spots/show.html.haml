@@ -1,0 +1,25 @@
+= javascript_include_tag 'fish'
+= javascript_include_tag 'navigation'
+
+= render 'shared/header'
+- spot_id = @spot.id
+%div{id: 'fish_list', style: "height: #{@fish_list_height}px;"}
+  - spot_name = @spot.name.nil? ? @spot.tmp_name : @spot.name
+  %h3= "#{spot_name}で見られる魚"
+  %div{id: 'group_box_part'}
+    グループ毎に表示する
+    %br
+    %select{id: 'group_box', name: 'fish_group_box', spot_id: spot_id}
+      %option{value: 'all'}すべて
+      - @groups.each do |group|
+        %option{value: "#{group}"}=group
+  - @fish.each_with_index do |fish, i|
+    %div{id: "fish_id_#{fish.id}", class: 'fish_box'}
+      %p= "#{fish.name}"
+      %img{id: "fish_picture_#{fish.id}", src: "#{fish.url}", alt: "fish picture #{i}", height: '120', fish_id: "#{fish.id}"}
+      %br
+      - search_word = fish.search_word.nil? ? fish.name : fish.search_word
+      = link_to "この魚の他の画像を見る", "https://www.google.co.jp/search?q=#{search_word}&source=lnms&tbm=isch", target: ["_blank"]
+      %a{class: 'link_to_reference', fish_id: "#{fish.id}"}WEB図鑑
+= render 'shared/footer'
+

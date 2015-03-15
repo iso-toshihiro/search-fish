@@ -1,0 +1,234 @@
+// Place all the styles related to the diving_spots controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+    color: #fff;
+    font: 12px verdana,"ヒラギノ丸ゴ ProN W4", "Hiragino Maru Gothic ProN", "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", "MS PGothic", Sans-Serif;
+    line-height: 1.5;
+    -webkit-text-size-adjust: none;
+    background: #0d174a;
+    border-top: 5px solid #02088a;
+    border-bottom: 5px solid #02088a;
+
+    ul#top_navigation {
+	width: 990px;
+	clear: both;
+	overflow: hidden;
+	margin: 0 auto 30px;
+	height: 1%;
+	li {
+	    float: left;
+	    width: 144px;
+	    font-size: 12px;
+	    display: block;
+            padding: 5px 0 10px 10px;
+	    color: #fff;
+	    border-left: 3px solid #fff;
+	    a {
+		color: #fff;
+		text-decoration: none;
+	    }
+	}
+	li:last-child {
+	    width: 142px;
+	}
+	li:hover {
+	    border-color: #02088a;
+	    opacity: .8;
+	}
+    }
+
+    #introduction {
+	width: 990px;
+	margin: 0 auto 20px;
+	div{
+	    padding: 0 10px;
+	}
+	a {
+	    color: #a3ffff;
+	    text-decoration: none;
+	    &:hover { opacity: .8; }
+	    &:active, &:focus { outline: 0; }
+	}
+    }
+
+    h1 {
+	padding: 10px;
+	font-family: 'Vidaloka', serif;
+	text-align: center;
+	font-weight: normal;
+	color: #fff;
+	.maintitle {
+	    display: block;
+	    font-size: 72px;
+	    line-height: 72px;
+	    letter-spacing: -4px;
+	    text-shadow: 0px 0px 3px #fff,
+	    0px 0px 6px #fff,
+	    0px 0px 9px #fff,
+	    0px 0px 12px #06f,
+	    0px 0px 21px #06f,
+	    0px 0px 24px #06f,
+	    0px 0px 30px #06f,
+	    0px 0px 45px #06f;
+	}
+    }
+
+    h3 {
+	margin: 10px auto;
+	padding: 4px 3px;
+	font-size: 150%;
+	border:1px solid #02088a;
+	background-color: #02088a;
+    }
+
+    #top_img {
+	display: block;
+	margin: 0 auto;
+    }
+
+    #search_box {
+	width: 990px; height: 330px;
+	margin: 0 auto;
+	#map_search {
+	    width: 600px; height: 330px;
+	    float: left;
+	    #map_canvas {
+		width: 600px; height: 270px;
+		margin: 0 auto;
+	    }
+	}
+	#keyword_search {
+	    width: 370px; height: 330px;
+	    float: right;
+	}
+    }
+
+    #list {
+	width: 990px;
+	margin: 0 auto;
+	.spot_box {
+	    width: 330px; height: 30px;
+	    font-size: 130%;
+	    text-align: left;
+	    float: left;
+	    a {
+		color: #a3ffff;
+		text-decoration: none;
+		&:hover { opacity: .8; }
+		&:active, &:focus { outline: 0; }
+	    }
+	}
+    }
+
+    #footer {
+	width: 990px;
+	margin: 20px auto 10px;
+	#to_top {
+	    float: right;
+	    margin: 22px 0 0 0;
+	}
+	a {
+	    color: #a3ffff;
+	    text-decoration: none;
+	    &:hover { opacity: .8; }
+	    &:active, &:focus { outline: 0; }
+	}
+	h1 {
+	    margin: 0px;
+	    padding: 0px;
+	    .maintitle {
+		height: 40px;
+		line-height: normal;
+		text-align: left;
+		font-size: 30px;
+		letter-spacing: normal;
+	    }
+	}
+    }
+}
+
+.map_window {
+    color: #000000;
+    height: 76px;
+    a {
+	font-size: 120%;
+    }
+    .spot_info {
+	position: relative;
+	top: -5px;
+	#sub_spot_name {
+	    font-size: 10px;
+	    color: #888;
+	}
+    }
+}
+
+#fish_list{
+    width: 990px;
+    text-align: left;
+    margin: 0 auto;
+    #group_box_part {
+	width: 990px; height: 50px;
+	float: left;
+    }
+    .fish_box {
+	position: relative;
+	width: 330px; height: 200px;
+	font-size: 130%;
+	float: left;
+	margin: 0px auto 20px;
+    }
+    a {
+	color: #a3ffff;
+	text-decoration: none;
+	font-size: 85%;
+	cursor: hand;
+	cursor: pointer;
+	&:hover { opacity: .8; }
+	&:active, &:focus { outline: 0; }
+    }
+}
+
+button, select {
+    border: 1px solid #15aeec;
+    background-color: #49c0f0;
+    background-image: -webkit-linear-gradient(top, #49c0f0, #2cafe3);
+    background-image: linear-gradient(to bottom, #49c0f0, #2cafe3);
+    border-radius: 4px;
+    color: #fff;
+    line-height: 8px;
+    -webkit-transition: none;
+    transition: none;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
+    &:hover {
+	border:1px solid #1090c3;
+	background-color: #1ab0ec;
+	background-image: -webkit-linear-gradient(top, #1ab0ec, #1a92c2);
+	background-image: linear-gradient(to bottom, #1ab0ec, #1a92c2);
+    }
+    &:active {
+	background: #1a92c2;
+	box-shadow: inset 0 3px 5px rgba(0, 0, 0, .2);
+	color: #1679a1;
+	text-shadow: 0 1px 1px rgba(255, 255, 255, .5);
+    }
+}
+
+#search_button {
+    margin: 8px 0;
+    width: 45px; height: 24px;
+    font: 12px verdana,"ヒラギノ丸ゴ ProN W4", "Hiragino Maru Gothic ProN", "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", "MS PGothic", Sans-Serif;
+}
+
+select {
+    height: 24px;
+    font: 12px verdana,"ヒラギノ丸ゴ ProN W4", "Hiragino Maru Gothic ProN", "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", "MS PGothic", Sans-Serif;
+}
+
+input {
+    border: 2px solid #49c0f0;
+    width: 260px; height: 20px;
+    font: 13px verdana,"ヒラギノ丸ゴ ProN W4", "Hiragino Maru Gothic ProN", "メイリオ", "Meiryo", "ＭＳ Ｐゴシック", "MS PGothic", Sans-Serif;
+}

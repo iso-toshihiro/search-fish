@@ -1,0 +1,27 @@
+%h1
+  %span{class: 'maintitle'}
+    Diver's Link Port
+%br
+%ul{id: 'top_navigation'}
+  %a{href: diving_spots_index_path}
+    %li{id: 'link_to_top'}
+      トップページ
+      %br
+      %span TOP
+  %li#about_site
+    このサイトについて
+    %br
+    %span About Site
+
+%div{id: 'introduction', class: 'invisible', style: 'display: none;'}
+  %h3 サイト紹介
+  %div
+    このサイトは、国内、海外の各ダイビングスポットで見られる魚、生物を紹介するサイトです。
+    %br
+    このサイトで紹介する情報はPADIの「みんなで作る魚図鑑」から引用しています。
+    %br
+    = link_to 'PADI みんなで作る魚図鑑', 'http://www.padi.co.jp/pb/'
+    %br
+    また、このサイトのTOPページの写真はこちらのサイトの写真を使わせて頂いています。
+    %br
+    = link_to '沖縄ダイビング 海の写真素材屋さん', 'http://world-diving.net'
