@@ -1,7 +1,7 @@
 # coding: utf-8
 require 'nokogiri'
 require 'open-uri'
-require 'URI'
+require 'uri'
 require 'romaji/core_ext/string'
 require 'kconv'
 
