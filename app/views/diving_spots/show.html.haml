@@ -20,5 +20,6 @@
       %br
       - search_word = fish.search_word.nil? ? fish.name : fish.search_word
       = link_to "この魚の他の画像を見る", "https://www.google.co.jp/search?q=#{search_word}&source=lnms&tbm=isch", target: ["_blank"]
+      %a{class: 'link_to_reference', fish_id: "#{fish.id}"}WEB図鑑
 = render 'shared/footer'
 

@@ -16,8 +16,8 @@ function attachMessage(marker, spot, openSwitch) {
 }
 
 function mapInitialize() {
-    var first_position = new google.maps.LatLng(35.6809691281986,139.7668620944023);
-    mapSet(first_position, 5, null);
+    var first_position = new google.maps.LatLng(35.0809691281986,135.2668620944023);
+    mapSet(first_position, 6, null);
 };
 
 function mapSet(centerPosition, zoomLevel, openId) {

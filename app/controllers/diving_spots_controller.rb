@@ -24,6 +24,7 @@ class DivingSpotsController < ApplicationController
     display_ids += spots.where('name       LIKE ?', "%#{params[:keyword]}%").map { |spot| spot.id }
     display_ids += spots.where('furigana   LIKE ?', "%#{params[:keyword]}%").map { |spot| spot.id }
     display_ids += spots.where('alphabet   LIKE ?', "%#{params[:keyword]}%").map { |spot| spot.id }
+    display_ids += spots.where('keywords   LIKE ?', "%#{params[:keyword]}%").map { |spot| spot.id }
     display_ids += spots.where('country    LIKE ?', "%#{params[:keyword]}%").map { |spot| spot.id }
     display_ids += spots.where('prefecture LIKE ?', "%#{params[:keyword]}%").map { |spot| spot.id }
     display_ids += spots.where('area       LIKE ?', "%#{params[:keyword]}%").map { |spot| spot.id }
@@ -48,11 +49,15 @@ class DivingSpotsController < ApplicationController
       windowId = "spot_marker_window_#{spot.id}"
       url = fishes_path(spot)
       area = spot.abroad ? spot.country : spot.prefecture
+      sub_spot_name = spot.abroad ? spot.alphabet : spot.furigana
       html = <<-EOS
         <div class='map_window'>
         <a href='#{url}' id='#{windowId}' window='open'>#{spot.name}</a><br>
-        #{area}<br>
+        <div class='spot_info'>
+        <span id='sub_spot_name'>#{sub_spot_name}</span><br>
+        #{area} #{spot.sea}<br>
         登録生物数: #{spot.fish.count}
+        </div>
         </div>
       EOS
       hash = spot.attributes
@@ -71,6 +76,13 @@ class DivingSpotsController < ApplicationController
   def another_url
     fish_id = params[:id]
     render json: { id: fish_id, url: Fish.find(fish_id).url2 }
+  end
+
+  def webzukan
+    fish = Fish.find(params[:id])
+    urls = fish.zukan_urls.compact
+    result =  urls.blank? ? false : true
+    render json: { urls: urls, result: result }
   end
 
   private

@@ -42,4 +42,22 @@ $(document).ready(function(){
 		   });
 	}
     });
+
+    $('.link_to_reference').click(function() {
+	var fishId = $(this).attr('fish_id');
+	$.ajax({type: 'GET',
+		url:  '/diving_spots/' + fishId + '/fish/webzukan',
+		data: {id: fishId},
+		sataType: 'json',
+		success: function(res){
+		    if(res.result) {
+			for( var i = 0 ; i < res.urls.length; i++) {
+			    window.open(res.urls[i], '_blank');
+			}
+		    }else {
+			alert('WEB図鑑にはありませんでした。');
+		    }
+		}
+	       });
+    });
 });
